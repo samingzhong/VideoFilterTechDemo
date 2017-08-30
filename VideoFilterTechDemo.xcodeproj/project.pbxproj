@@ -7,25 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24C6AF3E14F5EDE615F9E1DB /* libPods-VideoFilterTechDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F3A06159228074BE388717 /* libPods-VideoFilterTechDemo.a */; };
 		338470ED1F56AED900A5423C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 338470EC1F56AED900A5423C /* main.m */; };
-		338470F01F56AED900A5423C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 338470EF1F56AED900A5423C /* AppDelegate.m */; };
-		338470F31F56AED900A5423C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338470F21F56AED900A5423C /* ViewController.m */; };
+		338470F01F56AED900A5423C /* VFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 338470EF1F56AED900A5423C /* VFAppDelegate.m */; };
+		338470F31F56AED900A5423C /* VFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338470F21F56AED900A5423C /* VFViewController.m */; };
 		338470F61F56AED900A5423C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338470F41F56AED900A5423C /* Main.storyboard */; };
 		338470F81F56AED900A5423C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338470F71F56AED900A5423C /* Assets.xcassets */; };
 		338470FB1F56AED900A5423C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338470F91F56AED900A5423C /* LaunchScreen.storyboard */; };
+		338471041F56B52700A5423C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338471031F56B52700A5423C /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		338470E81F56AED900A5423C /* VideoFilterTechDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoFilterTechDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338470EC1F56AED900A5423C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		338470EE1F56AED900A5423C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		338470EF1F56AED900A5423C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		338470F11F56AED900A5423C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		338470F21F56AED900A5423C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		338470EE1F56AED900A5423C /* VFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VFAppDelegate.h; sourceTree = "<group>"; };
+		338470EF1F56AED900A5423C /* VFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VFAppDelegate.m; sourceTree = "<group>"; };
+		338470F11F56AED900A5423C /* VFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VFViewController.h; sourceTree = "<group>"; };
+		338470F21F56AED900A5423C /* VFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VFViewController.m; sourceTree = "<group>"; };
 		338470F51F56AED900A5423C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		338470F71F56AED900A5423C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		338470FA1F56AED900A5423C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		338470FC1F56AED900A5423C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		338471031F56B52700A5423C /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		36F3A06159228074BE388717 /* libPods-VideoFilterTechDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoFilterTechDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AFD7324209F81BBF943C068 /* Pods-VideoFilterTechDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoFilterTechDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoFilterTechDemo/Pods-VideoFilterTechDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		CEBAC7AF48D833FC6C6B1B2E /* Pods-VideoFilterTechDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoFilterTechDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoFilterTechDemo/Pods-VideoFilterTechDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +39,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				338471041F56B52700A5423C /* GLKit.framework in Frameworks */,
+				24C6AF3E14F5EDE615F9E1DB /* libPods-VideoFilterTechDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180C063B30E30BC00FDA6A3E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9AFD7324209F81BBF943C068 /* Pods-VideoFilterTechDemo.debug.xcconfig */,
+				CEBAC7AF48D833FC6C6B1B2E /* Pods-VideoFilterTechDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		338470DF1F56AED900A5423C = {
 			isa = PBXGroup;
 			children = (
 				338470EA1F56AED900A5423C /* VideoFilterTechDemo */,
 				338470E91F56AED900A5423C /* Products */,
+				338471021F56B52700A5423C /* Frameworks */,
+				180C063B30E30BC00FDA6A3E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,10 +77,10 @@
 		338470EA1F56AED900A5423C /* VideoFilterTechDemo */ = {
 			isa = PBXGroup;
 			children = (
-				338470EE1F56AED900A5423C /* AppDelegate.h */,
-				338470EF1F56AED900A5423C /* AppDelegate.m */,
-				338470F11F56AED900A5423C /* ViewController.h */,
-				338470F21F56AED900A5423C /* ViewController.m */,
+				338470EE1F56AED900A5423C /* VFAppDelegate.h */,
+				338470EF1F56AED900A5423C /* VFAppDelegate.m */,
+				338470F11F56AED900A5423C /* VFViewController.h */,
+				338470F21F56AED900A5423C /* VFViewController.m */,
 				338470F41F56AED900A5423C /* Main.storyboard */,
 				338470F71F56AED900A5423C /* Assets.xcassets */,
 				338470F91F56AED900A5423C /* LaunchScreen.storyboard */,
@@ -79,6 +98,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		338471021F56B52700A5423C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				338471031F56B52700A5423C /* GLKit.framework */,
+				36F3A06159228074BE388717 /* libPods-VideoFilterTechDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +114,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 338470FF1F56AED900A5423C /* Build configuration list for PBXNativeTarget "VideoFilterTechDemo" */;
 			buildPhases = (
+				8FEBC5E75CC7B3B5BDED575E /* [CP] Check Pods Manifest.lock */,
 				338470E41F56AED900A5423C /* Sources */,
 				338470E51F56AED900A5423C /* Frameworks */,
 				338470E61F56AED900A5423C /* Resources */,
+				8939CD19ABB837FA7168B272 /* [CP] Embed Pods Frameworks */,
+				D0FDA5065BC10D32B83D3C98 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -146,13 +177,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8939CD19ABB837FA7168B272 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VideoFilterTechDemo/Pods-VideoFilterTechDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8FEBC5E75CC7B3B5BDED575E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D0FDA5065BC10D32B83D3C98 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VideoFilterTechDemo/Pods-VideoFilterTechDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		338470E41F56AED900A5423C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				338470F31F56AED900A5423C /* ViewController.m in Sources */,
-				338470F01F56AED900A5423C /* AppDelegate.m in Sources */,
+				338470F31F56AED900A5423C /* VFViewController.m in Sources */,
+				338470F01F56AED900A5423C /* VFAppDelegate.m in Sources */,
 				338470ED1F56AED900A5423C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,10 +350,12 @@
 		};
 		338471001F56AED900A5423C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AFD7324209F81BBF943C068 /* Pods-VideoFilterTechDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q4J4V8H839;
 				INFOPLIST_FILE = VideoFilterTechDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.samingzhong.VideoFilterTechDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -283,10 +364,12 @@
 		};
 		338471011F56AED900A5423C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEBAC7AF48D833FC6C6B1B2E /* Pods-VideoFilterTechDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q4J4V8H839;
 				INFOPLIST_FILE = VideoFilterTechDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.samingzhong.VideoFilterTechDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -312,6 +395,7 @@
 				338471011F56AED900A5423C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

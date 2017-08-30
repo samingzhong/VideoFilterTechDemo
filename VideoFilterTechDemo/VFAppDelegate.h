@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  VFAppDelegate.h
 //  VideoFilterTechDemo
 //
 //  Created by samingzhong on 2017/8/30.
@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface VFAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 
 @end

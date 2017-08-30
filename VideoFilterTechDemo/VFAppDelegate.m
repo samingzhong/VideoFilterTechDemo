@@ -1,18 +1,18 @@
 //
-//  AppDelegate.m
+//  VFAppDelegate.m
 //  VideoFilterTechDemo
 //
 //  Created by samingzhong on 2017/8/30.
 //  Copyright © 2017年 samingzhong. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "VFAppDelegate.h"
 
-@interface AppDelegate ()
+@interface VFAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation VFAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
