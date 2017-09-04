@@ -1,18 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YR9-e9-Pws">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Video Filter View Controller-->
+        <scene sceneID="ORG-pZ-NqE">
+            <objects>
+                <viewController id="YR9-e9-Pws" customClass="STVideoFilterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mEa-ng-aGl"/>
+                        <viewControllerLayoutGuide type="bottom" id="XUA-3l-H4H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m7K-3u-7UH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJo-G3-CoB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </glkView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="YJo-G3-CoB" firstAttribute="bottom" secondItem="XUA-3l-H4H" secondAttribute="top" id="4pV-PQ-LpH"/>
+                            <constraint firstItem="YJo-G3-CoB" firstAttribute="leading" secondItem="m7K-3u-7UH" secondAttribute="leading" id="D3D-8Z-QEe"/>
+                            <constraint firstItem="YJo-G3-CoB" firstAttribute="top" secondItem="m7K-3u-7UH" secondAttribute="top" id="Ko5-vf-S9f"/>
+                            <constraint firstAttribute="trailing" secondItem="YJo-G3-CoB" secondAttribute="trailing" id="xfI-gF-pMq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="videoPreviewerView" destination="YJo-G3-CoB" id="4bu-jd-ZoD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LDd-Dm-obh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-476" y="-129.98500749625188"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="VFViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -22,20 +54,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5t-Zv-r70">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </glkView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCH-jg-hDB" customClass="CameraControlView">
+                                <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                                <color key="backgroundColor" white="0.87306034480000005" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="PRX-8t-EB8"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="kCH-jg-hDB" secondAttribute="trailing" constant="-16" id="B3c-3p-fHV"/>
+                            <constraint firstItem="kCH-jg-hDB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="Fcr-uf-iv9"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kCH-jg-hDB" secondAttribute="bottom" id="lho-dQ-6rl"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="cameraControlView" destination="kCH-jg-hDB" id="jj0-4Q-eMV"/>
                         <outlet property="videoPreviewView" destination="F5t-Zv-r70" id="Gcr-FA-WEM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
+            <point key="canvasLocation" x="-474" y="573"/>
         </scene>
     </scenes>
 </document>

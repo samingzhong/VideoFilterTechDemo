@@ -10,7 +10,7 @@
 #import <GLKit/GLKit.h>
 #import "VFAppDelegate.h"
 #import <MotionOrientation.h>
-
+#import "CameraControlView.h"
 static CGColorSpaceRef sDeviceRgbColorSpace = NULL;
 
 @interface VFViewController ()
@@ -21,10 +21,21 @@ static CGColorSpaceRef sDeviceRgbColorSpace = NULL;
 @property (nonatomic, strong) EAGLContext *eaglContext;
 @property (nonatomic, assign) CGRect videoPreviewViewBounds;
 
+@property (weak, nonatomic) IBOutlet CameraControlView *cameraControlView;
 
 @end
 
 @implementation VFViewController
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+//    self.cameraControlView = [[NSBundle mainBundle] loadNibNamed:@"VFCustomView" owner:nil options:nil][1];
+//    [self.view addSubview:_cameraControlView];
+    CameraControlView *view = [[[NSBundle mainBundle]loadNibNamed:@"VFCustomView" owner:nil options:nil] objectAtIndex:1];
+    self.cameraControlView = view;
+}
+
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -42,6 +53,12 @@ static CGColorSpaceRef sDeviceRgbColorSpace = NULL;
         [UIApplication sharedApplication].statusBarHidden = YES;
 
     }
+    
+//    CameraControlView *controlView = [CameraControlView new];
+//    
+//    [[UINib nibWithNibName:@"VFCustomView" bundle:nil] instantiateWithOwner:controlView options:nil];
+//    
+    NSLog(@"%s", __FUNCTION__);
     
     return self;
 }
