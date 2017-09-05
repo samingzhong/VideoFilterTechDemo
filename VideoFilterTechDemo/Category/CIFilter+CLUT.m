@@ -6,7 +6,7 @@
 #import "CIFilter+CLUT.h"
 #import <CoreImage/CoreImage.h>
 #import <OpenGLES/EAGL.h>
-#import "UIImage+SMAAdditions.h"
+#import "UIImage+STAdditions.h"
 
 @implementation CIFilter (CLUT)
 

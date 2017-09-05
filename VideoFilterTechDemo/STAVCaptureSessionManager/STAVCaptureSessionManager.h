@@ -1,5 +1,5 @@
 //
-//  STVideoFilter.h
+//  STAVCaptureSessionManager.h
 //  VideoFilterTechDemo
 //
 //  Created by samingzhong on 2017/9/1.
@@ -11,7 +11,7 @@
 @class GLKView;
 #import <AVFoundation/AVFoundation.h>
 
-@interface STVideoFilter : NSObject
+@interface STAVCaptureSessionManager : NSObject
 @property (nonatomic, strong) GLKView *videoPreviewView;
 
 @property (nonatomic, strong) CIFilter *filter;

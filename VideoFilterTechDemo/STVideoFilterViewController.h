@@ -1,5 +1,5 @@
 //
-//  STVideoFilterViewController.h
+//  STAVCaptureSessionManagerViewController.h
 //  VideoFilterTechDemo
 //
 //  Created by samingzhong on 2017/9/1.

@@ -1,30 +1,24 @@
 //
-//  STVideoFilter.m
+//  STAVCaptureSessionManager.m
 //  VideoFilterTechDemo
 //
 //  Created by samingzhong on 2017/9/1.
 //  Copyright © 2017年 samingzhong. All rights reserved.
 //
 
-#import "STVideoFilter.h"
+#import "STAVCaptureSessionManager.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import <GLKit/GLKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreImage/CoreImage.h>
 
-NSString *const FHViewControllerDidStartCaptureSessionNotification = @"FHViewControllerDidStartCaptureSessionNotification";
-
-NSString *const kFHSettingCameraPositionKey = @"CameraPosition";
-NSString *const kFHSettingCaptureSessionPresetKey = @"CaptureSessionPreset";
-NSString *const kFHSettingColorMatchKey = @"ColorMatch";
-NSString *const kFHSettingDidUpdateNotification = @"kFHSettingDidUpdateNotification";
-NSString *const kFHSettingUpdatedKeyNameKey = @"Key";
-NSString *const kFHFilterImageAttributeSourceDidChangeNotification = @"FHFilterImageAttributeSourceDidChangeNotification";
+NSString *const kSTCameraPositionKey = @"CameraPosition";
+NSString *const kSTCaptureSessionPresetKey = @"CaptureSessionPreset";
 
 static CGColorSpaceRef sDeviceRgbColorSpace = NULL;
 
 
-@interface STVideoFilter () <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
+@interface STAVCaptureSessionManager () <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
 @property (nonatomic, strong) dispatch_queue_t captureSessionQueue;
 @property (nonatomic, strong) EAGLContext *eaglContext;
 @property (nonatomic, strong) CIContext *ciContext;
@@ -43,7 +37,7 @@ static CGColorSpaceRef sDeviceRgbColorSpace = NULL;
 @end
 
 
-@implementation STVideoFilter
+@implementation STAVCaptureSessionManager
 
 // an inline function to filter a CIImage through a filter chain; note that each image input attribute may have different source
 static inline CIImage *RunFilter(CIImage *cameraImage, CIFilter *filter)
@@ -66,7 +60,7 @@ static inline CIImage *RunFilter(CIImage *cameraImage, CIFilter *filter)
 }
 
 
-
+#pragma mark - Public methods
 - (instancetype)initWithPreviewerView:(GLKView *)videoPreviewView {
     self = [super init];
     if (self)
@@ -84,15 +78,8 @@ static inline CIImage *RunFilter(CIImage *cameraImage, CIFilter *filter)
         {
             _videoPreviewView = videoPreviewView;
             _eaglContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-//            _videoPreviewView = [[GLKView alloc] initWithFrame:window.bounds context:_eaglContext];
             _videoPreviewView.context = _eaglContext;
             _videoPreviewView.enableSetNeedsDisplay = NO;
-            
-            // because the native video image from the back camera is in UIDeviceOrientationLandscapeLeft (i.e. the home button is on the right), we need to apply a clockwise 90 degree transform so that we can draw the video preview as if we were in a landscape-oriented view; if you're using the front camera and you want to have a mirrored preview (so that the user is seeing themselves in the mirror), you need to apply an additional horizontal flip (by concatenating CGAffineTransformMakeScale(-1.0, 1.0) to the rotation transform)
-//            _videoPreviewView.transform = CGAffineTransformMakeRotation(M_PI_2);
-            
-//            _videoPreviewView.frame = [UIScreen mainScreen].bounds;
-//            _videoPreviewView.frame = window.bounds;
         }
         
         // create the CIContext instance, note that this must be done after _videoPreviewView is properly set up
@@ -117,7 +104,7 @@ static inline CIImage *RunFilter(CIImage *cameraImage, CIFilter *filter)
         // get the input device and also validate the settings
         NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
         
-        AVCaptureDevicePosition position = [[NSUserDefaults standardUserDefaults] integerForKey:kFHSettingCameraPositionKey];
+        AVCaptureDevicePosition position = [[NSUserDefaults standardUserDefaults] integerForKey:kSTCameraPositionKey];
         
         _videoDevice = nil;
         for (AVCaptureDevice *device in videoDevices)
@@ -130,9 +117,8 @@ static inline CIImage *RunFilter(CIImage *cameraImage, CIFilter *filter)
         
         if (!_videoDevice)
         {
-//            return ;
             _videoDevice = [videoDevices objectAtIndex:0];
-            [[NSUserDefaults standardUserDefaults] setObject:@(_videoDevice.position) forKey:kFHSettingCameraPositionKey];
+            [[NSUserDefaults standardUserDefaults] setObject:@(_videoDevice.position) forKey:kSTCameraPositionKey];
         }
         
         
@@ -157,13 +143,13 @@ static inline CIImage *RunFilter(CIImage *cameraImage, CIFilter *filter)
         
         // obtain the preset and validate the preset
         
-        NSString *preset = [[NSUserDefaults standardUserDefaults] objectForKey:kFHSettingCaptureSessionPresetKey];
+        NSString *preset = [[NSUserDefaults standardUserDefaults] objectForKey:kSTCaptureSessionPresetKey];
         preset = AVCaptureSessionPreset1920x1080;
 
         if (![_videoDevice supportsAVCaptureSessionPreset:preset])
         {
             preset = AVCaptureSessionPresetHigh;
-            [[NSUserDefaults standardUserDefaults] setObject:preset forKey:kFHSettingCaptureSessionPresetKey];
+            [[NSUserDefaults standardUserDefaults] setObject:preset forKey:kSTCaptureSessionPresetKey];
         }
         if (![_videoDevice supportsAVCaptureSessionPreset:preset])
         {
@@ -240,12 +226,30 @@ static inline CIImage *RunFilter(CIImage *cameraImage, CIFilter *filter)
             _videoPreviewView.transform = transform;
 //            _videoPreviewView.frame = window.bounds;
             _videoPreviewView.frame = tmpRect;
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:FHViewControllerDidStartCaptureSessionNotification object:self];
+        
+            // post notification
         });
         
     });
 
+}
+
+
+#warning TODOs
+- (void)stopPreview {
+    
+}
+
+- (void)startRecord {
+    
+}
+
+- (void)stopRecord {
+    
+}
+
+- (void)switchCamera {
+    
 }
 
 #pragma mark - Delegate methods
@@ -291,25 +295,16 @@ static inline CIImage *RunFilter(CIImage *cameraImage, CIFilter *filter)
     CIImage *filteredImage = RunFilter(sourceImage, _filter);
     
     CGRect sourceExtent = sourceImage.extent;
-//    
-//    CGFloat sourceAspect = sourceExtent.size.width / sourceExtent.size.height;
-//    CGFloat previewAspect = _videoPreviewViewBounds.size.width  / _videoPreviewViewBounds.size.height;
+    
+    // for future
+    //CGFloat sourceAspect = sourceExtent.size.width / sourceExtent.size.height;
+    //CGFloat previewAspect = _videoPreviewViewBounds.size.width  / _videoPreviewViewBounds.size.height;
     
     // we want to maintain the aspect radio of the screen size, so we clip the video image
     CGRect drawRect = sourceExtent;
-//    if (sourceAspect > previewAspect)
-//    {
-//        // use full height of the video image, and center crop the width
-//        drawRect.origin.x += (drawRect.size.width - drawRect.size.height * previewAspect) / 2.0;
-//        drawRect.size.width = drawRect.size.height * previewAspect;
-//    }
-//    else
-//    {
-//        // use full width of the video image, and center crop the height
-//        drawRect.origin.y += (drawRect.size.height - drawRect.size.width / previewAspect) / 2.0;
-//        drawRect.size.height = drawRect.size.width / previewAspect;
-//    }
+
     
+    // just show preview
     if (_assetWriter == nil)
     {
         [_videoPreviewView bindDrawable];
@@ -319,7 +314,6 @@ static inline CIImage *RunFilter(CIImage *cameraImage, CIFilter *filter)
         
         // clear eagl view to grey
         glClearColor(0.5, 0.5, 0.5, 1.0);
-        //        glClearColor(1, 1, 1, 1);
         glClear(GL_COLOR_BUFFER_BIT);
         
         // set the blend mode to "source over" so that CI will use that
@@ -327,60 +321,59 @@ static inline CIImage *RunFilter(CIImage *cameraImage, CIFilter *filter)
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         
         if (filteredImage)
-//            [_ciContext drawImage:filteredImage inRect:_videoPreviewViewBounds fromRect:drawRect];
             [_ciContext drawImage:filteredImage inRect:CGRectMake(0, 0, self.videoPreviewView.drawableWidth, self.videoPreviewView.drawableHeight) fromRect:drawRect];
-
         
         [_videoPreviewView display];
     }
-//    else
-//    {
-//        // if we need to write video and haven't started yet, start writing
-//        if (!_videoWritingStarted)
-//        {
-//            _videoWritingStarted = YES;
-//            BOOL success = [_assetWriter startWriting];
-//            if (!success)
-//            {
-//                [self _showAlertViewWithMessage:@"Cannot write video data, recording aborted"];
-//                [self _abortWriting];
-//                return;
-//            }
-//            
-//            [_assetWriter startSessionAtSourceTime:timestamp];
-//            _videoWrtingStartTime = timestamp;
-//            self.currentVideoTime = _videoWrtingStartTime;
-//        }
-//        
-//        CVPixelBufferRef renderedOutputPixelBuffer = NULL;
-//        
-//        OSStatus err = CVPixelBufferPoolCreatePixelBuffer(nil, _assetWriterInputPixelBufferAdaptor.pixelBufferPool, &renderedOutputPixelBuffer);
-//        if (err)
-//        {
-//            NSLog(@"Cannot obtain a pixel buffer from the buffer pool");
-//            return;
-//        }
-//        
-//        // render the filtered image back to the pixel buffer (no locking needed as CIContext's render method will do that
-//        if (filteredImage)
-//            [_ciContext render:filteredImage toCVPixelBuffer:renderedOutputPixelBuffer bounds:[filteredImage extent] colorSpace:sDeviceRgbColorSpace];
-//        
-//        // pass option nil to enable color matching at the output, otherwise the color will be off
-//        CIImage *drawImage = [CIImage imageWithCVPixelBuffer:renderedOutputPixelBuffer options:nil];
-//        
-//        [_videoPreviewView bindDrawable];
-//        [_ciContext drawImage:drawImage inRect:_videoPreviewViewBounds fromRect:drawRect];
-//        [_videoPreviewView display];
-//        
-//        
-//        self.currentVideoTime = timestamp;
-//        
-//        // write the video data
-//        if (_assetWriterVideoInput.readyForMoreMediaData)
-//            [_assetWriterInputPixelBufferAdaptor appendPixelBuffer:renderedOutputPixelBuffer withPresentationTime:timestamp];
-//        
-//        CVPixelBufferRelease(renderedOutputPixelBuffer);
-//    }
+/*    else
+    {
+        // if we need to write video and haven't started yet, start writing
+        if (!_videoWritingStarted)
+        {
+            _videoWritingStarted = YES;
+            BOOL success = [_assetWriter startWriting];
+            if (!success)
+            {
+                [self _showAlertViewWithMessage:@"Cannot write video data, recording aborted"];
+                [self _abortWriting];
+                return;
+            }
+            
+            [_assetWriter startSessionAtSourceTime:timestamp];
+            _videoWrtingStartTime = timestamp;
+            self.currentVideoTime = _videoWrtingStartTime;
+        }
+        
+        CVPixelBufferRef renderedOutputPixelBuffer = NULL;
+        
+        OSStatus err = CVPixelBufferPoolCreatePixelBuffer(nil, _assetWriterInputPixelBufferAdaptor.pixelBufferPool, &renderedOutputPixelBuffer);
+        if (err)
+        {
+            NSLog(@"Cannot obtain a pixel buffer from the buffer pool");
+            return;
+        }
+        
+        // render the filtered image back to the pixel buffer (no locking needed as CIContext's render method will do that
+        if (filteredImage)
+            [_ciContext render:filteredImage toCVPixelBuffer:renderedOutputPixelBuffer bounds:[filteredImage extent] colorSpace:sDeviceRgbColorSpace];
+        
+        // pass option nil to enable color matching at the output, otherwise the color will be off
+        CIImage *drawImage = [CIImage imageWithCVPixelBuffer:renderedOutputPixelBuffer options:nil];
+        
+        [_videoPreviewView bindDrawable];
+        [_ciContext drawImage:drawImage inRect:_videoPreviewViewBounds fromRect:drawRect];
+        [_videoPreviewView display];
+        
+        
+        self.currentVideoTime = timestamp;
+        
+        // write the video data
+        if (_assetWriterVideoInput.readyForMoreMediaData)
+            [_assetWriterInputPixelBufferAdaptor appendPixelBuffer:renderedOutputPixelBuffer withPresentationTime:timestamp];
+        
+        CVPixelBufferRelease(renderedOutputPixelBuffer);
+    }
+ */
 }
 
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage (SMAAdditions)
+@interface UIImage (STAdditions)
 
 + (instancetype)sma_imageWithBase64Encoding:(NSString *)base64String;
 + (instancetype)sma_2xImageWithBase64Encoding:(NSString *)base64String;

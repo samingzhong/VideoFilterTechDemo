@@ -1,5 +1,5 @@
 //
-//  STVideoFilterViewController.m
+//  STAVCaptureSessionManagerViewController.m
 //  VideoFilterTechDemo
 //
 //  Created by samingzhong on 2017/9/1.
@@ -8,17 +8,15 @@
 
 #import "STVideoFilterViewController.h"
 #import <GLKit/GLKit.h>
-#import "STVideoFilter.h"
+#import "STAVCaptureSessionManager.h"
 #import "CIFilter+CLUT.h"
-#import "STXXCLUTBase64String.h"
+#import "STCLUTBase64String.h"
 #import "STFilterInfo.h"
 
 
 @interface STVideoFilterViewController ()
 @property (weak, nonatomic) IBOutlet GLKView *videoPreviewerView;
-@property (nonatomic, strong) STVideoFilter *videoFilter;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *previewerViewWithConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *previewerViewHeightConstraint;
+@property (nonatomic, strong) STAVCaptureSessionManager *videoFilter;
 
 @property (nonatomic, copy) NSArray *presetFiltersInfo;
 @end
@@ -36,14 +34,13 @@
       [STFilterInfo filterInfoWithName:@"黄种人" description:@"黄种人滤镜" CLUTBase64String:filter_huangzhongren_base64String]
       ];
     
-//    CIFilter *filter = [CIFilter colorCubeFilterWithCLUTImageNamed:@"42737475_xl" dimension:64];
     STFilterInfo *filterInfo = [_presetFiltersInfo firstObject];
     CIFilter *filter = [CIFilter colorCubeFilterWithCLUTBase64String:filterInfo.CLUTBase64String  dimension:64];
     filter = [CIFilter new];
     filter = [CIFilter filterWithName:@"CISepiaTone"];
 //    CIFilter *filter = nil;
     
-    _videoFilter = [[STVideoFilter alloc] initWithPreviewerView:self.videoPreviewerView];
+    _videoFilter = [[STAVCaptureSessionManager alloc] initWithPreviewerView:self.videoPreviewerView];
     _videoFilter.filter = filter;
     [_videoFilter startPreview];
     

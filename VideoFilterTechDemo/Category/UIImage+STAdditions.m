@@ -6,9 +6,9 @@
 //  Copyright © 2017年 Sunteng Information Technology Co., Ltd. All rights reserved.
 //
 
-#import "UIImage+SMAAdditions.h"
+#import "UIImage+STAdditions.h"
 
-@implementation UIImage (SMAAdditions)
+@implementation UIImage (STAdditions)
 
 + (instancetype)sma_imageWithBase64Encoding:(NSString *)base64String {
     NSData *data = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
